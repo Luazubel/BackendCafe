@@ -69,3 +69,19 @@ export const listarProductos = async(req, res) => {
             mensaje: "Error al intetntar editar um producto"
         })    }
   }
+
+  export const borrarProducto = async(req, res)=>{
+    try {
+        //buscar el id de la ruta y luego pedir a la bd borrar ese prodcuto
+        await Producto.findByIdAndDelete(req.params.id);
+        //enviar respuesta al frontend
+        res.status(200).json({
+            message: "el producto fue borrado correctamente"
+        })
+        
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({
+            mensaje: "Error al intentar borrar un producto"
+        })    }
+  }
